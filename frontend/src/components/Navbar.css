@@ -1,0 +1,25 @@
+img{
+    width:10%;
+    object-fit:contain;
+}
+#navbar{
+    display:flex;
+    justify-content: space-around;
+    box-shadow: 1px 5px 5px #e0dcdc ;
+}
+ul{
+    display: flex;
+    padding: px 15px;
+    /* justify-content: space-around; */
+}
+li{
+    list-style: none;
+    margin-left: 10px;
+    padding :1px 15px;
+}
+a{
+    text-decoration:none ;
+    color: #000;
+    font-size: 18px;
+
+}
