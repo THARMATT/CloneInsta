@@ -6,7 +6,7 @@ export default function Signin() {
   return (
     <div className="signin">
       <div>
-        <div classname="loginform" id ="loginform">
+        <div className="loginform" id ="loginform">
           <img className="signinlogo" src={logo}/>
           <div>
             <input type="email" placeholder="Email" id="email"/>

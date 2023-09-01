@@ -4,9 +4,9 @@ import "./Navbar.css";
 import { Link } from "react-router-dom";
 export default function Navbar() {
     return (<>
-        <div classname="navbar" id="navbar">
+        <div className="navbar" id="navbar">
             <img src={logo} alt="" />
-            <ul classname="nav-menu">
+            <ul className="nav-menu">
 
                 <Link to="/signup"><li>SignUp</li></Link>
                 <Link to="/signin"> <li>Signin</li></Link>

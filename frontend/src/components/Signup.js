@@ -28,7 +28,7 @@ export default function Signup() {
           By signing up,you agree to out Terms,<br />privacy policy and cookies policy.
         </p>
         <div><input type="submit" id="submit-btn" value="Sign Up" /></div>
-        <div classname="form2">
+        <div className="form2">
         Already have an account?<Link to= "/signin" ><span>Sign in</span></Link>
       </div>
       </div>
