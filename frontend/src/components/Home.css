@@ -14,15 +14,19 @@ display: flex;
     margin: 0;
     padding: 11px;
 }
+.card-pic{
+    display: flex;
+}
 .card-pic img{
-    width:30px ;
-    border-radius: 30px;
+    width:34px ;
+    
+    border-radius: 40px;
     height: auto;
     object-fit: contain;
-    padding: 5px;
+    padding: 15px;
 }
 
-.card-image img{
+.card-img img{
     width:100%
 }
 .card-content{
@@ -31,19 +35,25 @@ display: flex;
     padding: 3px 10px;
     border-bottom:1px solid rgb(173,173,173);
 }
+.card-content span{
+    margin-right:7px;
+}
 .add-comment{
     display: flex;
     align-items:center;
 }
-add-comment input{
+.add-comment input{
     margin: 0;
     border:none;
     padding: 10px;
     outline: none;
 
 }
-.comment{
+.add-comment button{
     border:none;
     font-weight: bolder;
     color:#339ce3;
+    outline:none;
+    background: none;
+    cursor:pointer;
 }
