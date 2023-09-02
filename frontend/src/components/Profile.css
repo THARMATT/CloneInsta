@@ -1,0 +1,42 @@
+.profile{
+    max-width: 600px;
+    margin:10px auto 
+}
+.profile-frame{
+    display: flex;
+    justify-content: space-evenly;
+
+}
+.profile-pic>img{
+    width: 160px;
+    height:160px;
+    object-fit:contain;
+    border-radius:60%;
+   
+}
+.profile-data{
+    text-align: left;
+
+}
+.profile-info{
+    display: flex;
+    /* padding:0px 5px; */
+    justify-content: space-evenly;
+    
+}
+.profile-info>p{
+    margin-top: 2px;
+   padding: 4px;
+}
+.gallery{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+
+}
+.gallery img{
+    width: 30%;
+    height:15em;
+    margin:10px;
+    object-fit: fill;
+}
