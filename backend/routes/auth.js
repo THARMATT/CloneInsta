@@ -3,6 +3,12 @@ const { default: mongoose, Mongoose } = require("mongoose");
 const router = express.Router();
 const USER = mongoose.model("USER")
 const bcrypt = require("bcrypt");
+const jwt=require("jsonwebtoken");
+const {Jwt_secret}=require("../keys")
+const requireLogin=require('../middlewares/requireLogin')
+
+
+
 
 
 //Endpoint for signup
@@ -56,7 +62,10 @@ if(!savedUser){
 
 bcrypt.compare(password,savedUser.password)
 .then((match)=>{if(match){
-   return res.status(200).json({message:"Signin Successfully"})
+   //
+   const token= jwt.sign({_id:savedUser.id},Jwt_secret)
+   // console.log(token)
+   return res.status(200).json({message:"Signin Successfully",token:token})
 }
 else{
    return res.status(422).json({error:"Invalid Credentials"})
