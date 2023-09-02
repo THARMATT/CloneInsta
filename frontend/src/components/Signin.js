@@ -8,45 +8,55 @@ export default function Signin() {
   const navigate=useNavigate()
   const [email, setemail] = useState("")
   const [password, setPassword] = useState("")
-
+  const [item, setitem] = useState("")
+  // const jwt=require("jsonwebtoken");
 
   //TOAST Functions
 const notifyA=(msg)=>toast.error(msg)
 const notifyB=(msg)=>toast.success(msg)
 const emailRegex=/.*@[a-z0-9.-]*/
 
-  const postData=()=>{
-    //checking email
-  if(!emailRegex.test(email)){
-    console.log("email kaa chkrr")
-    notifyA("Invalid credentials")
-    return
+const postData = () => {
+  // Checking email
+  if (!emailRegex.test(email)) {
+    console.log("email ka chkrr");
+    notifyA("Invalid credentials");
+    return;
+  } else {
+    console.log("email is ok");
   }
- else{
-  console.log("email is ok")
- }
-  
-  //sending data to server
-  fetch("http://localhost:5000/signin",{
-    method:"POST",
-    headers:{
-      "Content-Type":"application/json"
+
+  // Sending data to the server
+  fetch("http://localhost:5000/signin", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
     },
-    body:JSON.stringify({
-      password:password,
-      email:email
+    body: JSON.stringify({
+      password: password,
+      email: email,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.error) {
+        notifyA(data.error);
+      } else if (data.token) { // Check if the token field exists in the response
+        notifyB(data.message);
+        // console.log(data.token);
+        localStorage.setItem("jwt", data.token);
+        navigate("/");
+      } else {
+        notifyA("Token is missing in the response"); // Handle missing token
+      }
+      console.log(data);
     })
-  }).then(res=>res.json())
-  .then(data=>{
-    if(data.error){
-    notifyA(data.error)}
-    else{
-      notifyB(data.message)
-      navigate("/")
-    }
-    
-    console.log(data)})
-  }
+    .catch((error) => {
+      console.error("Error:", error);
+      notifyA("An error occurred");
+    });
+};
+
 
   return (
     <div className="signin">

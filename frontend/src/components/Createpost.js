@@ -1,6 +1,39 @@
-import React from 'react'
+import React,{useState} from 'react'
 import "./Createpost.css"
 export default function Createpost() {
+const[body,setBody]=useState("");
+const[image,setImage]=useState("")
+const[url,setUrl]=useState("")
+//posting image to cloudinary
+const postDetails=()=>{
+  console.log(body,image)
+  const data=new FormData()
+  data.append("file",image)
+  data.append("upload_preset","instaclone")
+  data.append("cloud_name", "nigam-cloud")
+  fetch ("https://api.cloudinary.com/v1_1/nigam-cloud/image/upload",{
+    method:"POST",
+    body:data
+  }).then(res=>res.json())
+  .then(data=>setUrl(data.url))
+  .catch(err=>console.log(err))
+
+  //save post to mongodb
+  fetch("http://localhost:5000/createPost",
+ { method:'POST',
+headers:{
+  "Content-Type" :"application/json",
+  "Authorization":"Bearer "+localStorage.getItem("jwt")
+
+},
+body:JSON.stringify({
+  body,
+  pic:url
+})
+}
+  ).then(res=>res.json()).then(data=>console.log(data)).catch(err=>console.log(err)) //callback
+}
+
     const loadfile=(event)=>{
         var output =document.getElementById('output');
         output.src=URL.createObjectURL(event.target.files[0]);
@@ -14,14 +47,15 @@ export default function Createpost() {
         {/* header  */}
          <div className="post-header">
             <h1>Create New Post</h1>
-            <button id='post-btn'>Share</button>
+            <button id='post-btn' onClick={()=>{postDetails()}}>Share</button>
          </div>
          {/* image-preview  */}
          <div className="main-div">
             <img  id="output" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.QgsAktNpJ5PWjy8RoRBn0QHaHa%26pid%3DApi&f=1&ipt=57266ff7dec7b9f80001ac10b4777fd3f63cbe02990337c416f0bcf27970a2ee&ipo=images" alt="" />
             <input type="file" accept='image/*' onChange={(event)=>{
 
-          loadfile(event)  }}/>
+          loadfile(event)  
+          setImage(event.target.files[0])}}/>
          </div>
          {/* foter */}
          <div className="details">
@@ -32,7 +66,9 @@ export default function Createpost() {
                 </div><h5>Lavesh</h5>
              
             </div>
-            <textarea  type="text" placeholder='Write a caption'></textarea>
+            <textarea value={body} onChange={(e)=>{setBody(e.target.value)
+
+            }}  type="text" placeholder='Write a caption'></textarea>
          </div>
       </div>
     </div>
