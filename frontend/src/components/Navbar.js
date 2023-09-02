@@ -11,6 +11,7 @@ export default function Navbar() {
                 <Link to="/signup"><li>SignUp</li></Link>
                 <Link to="/signin"> <li>Signin</li></Link>
                 <Link to="/profile"><li>Profile</li></Link>
+                <Link to="/createPost"><li>CreatePost</li></Link>
             </ul>
         </div></>
     )
