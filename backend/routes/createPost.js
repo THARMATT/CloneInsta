@@ -29,4 +29,12 @@ console.log(req.user)
     }
 });
 
+
+// route for 
+router.get("/allposts",requireLogin,(req,res)=>{
+
+    POST.find()
+    .populate("postedBy","_id name").then(posts=>res.json(posts))
+    .catch(err=>console.log(err))
+})
 module.exports = router;

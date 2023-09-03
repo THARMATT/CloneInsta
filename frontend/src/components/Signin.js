@@ -1,10 +1,11 @@
-import React,{useState} from 'react'
+import React,{useState,useContext} from 'react'
 import"./signin.css";
 import { Link ,useNavigate } from 'react-router-dom';
 import logo from "../images/logo.png"
 import { toast } from 'react-toastify';
-
+import { LoginContext } from '../context/LoginContext';
 export default function Signin() {
+  const {setUserLogin}=useContext(LoginContext)
   const navigate=useNavigate()
   const [email, setemail] = useState("")
   const [password, setPassword] = useState("")
@@ -42,9 +43,10 @@ const postData = () => {
       if (data.error) {
         notifyA(data.error);
       } else if (data.token) { // Check if the token field exists in the response
-        notifyB(data.message);
+        notifyB("Signed In Successfully");
         console.log(data.token); //give token in console
         localStorage.setItem("jwt", data.token);
+        setUserLogin(true)
         navigate("/");
       } else {
         notifyA("Token is missing in the response"); // Handle missing token
