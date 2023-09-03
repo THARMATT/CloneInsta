@@ -7,14 +7,14 @@ const POST = mongoose.model("POST");
 // Endpoint for post
 
 router.post("/createPost", requireLogin, (req, res) => {
-    const { title, body } = req.body;
-    
-    if (!title || !body) {
+    const { pic, body } = req.body;
+    console.log(pic)
+    if (!pic|| !body) {
         return res.status(422).json({ error: "Please add all the fields" });
     }
 console.log(req.user)
     const post = new POST({
-        title,
+        photo:pic,
         body,
         postedBy: req.user
     });

@@ -24,10 +24,10 @@ export default function Home() {
    <span className="material-symbols-outlined">
 favorite
 </span> 
-<span class="material-symbols-outlined">
+<span className="material-symbols-outlined">
 mode_comment
 </span>
-<span class="material-symbols-outlined">
+<span className="material-symbols-outlined">
 send
 </span>
 <p> 1 Like</p>
@@ -35,7 +35,7 @@ send
  
 {/* add-comment  */}
 <div className="add-comment">
-<span class="material-symbols-outlined">
+<span className="material-symbols-outlined">
 mood
 </span>
 

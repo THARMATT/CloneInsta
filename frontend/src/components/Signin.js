@@ -8,7 +8,7 @@ export default function Signin() {
   const navigate=useNavigate()
   const [email, setemail] = useState("")
   const [password, setPassword] = useState("")
-  const [item, setitem] = useState("")
+  // const [item, setitem] = useState("")
   // const jwt=require("jsonwebtoken");
 
   //TOAST Functions
@@ -43,7 +43,7 @@ const postData = () => {
         notifyA(data.error);
       } else if (data.token) { // Check if the token field exists in the response
         notifyB(data.message);
-        // console.log(data.token);
+        console.log(data.token); //give token in console
         localStorage.setItem("jwt", data.token);
         navigate("/");
       } else {
@@ -62,7 +62,9 @@ const postData = () => {
     <div className="signin">
       <div>
         <div className="loginform" id ="loginform">
-          <img className="signinlogo" src={logo}/>
+       
+          <img className="signinlogo" src={logo}/>  
+         
           <div>
             <input type="email" placeholder="Email"  value={email} id="email" onChange={(e)=>{setemail(e.target.value)}}/>
           </div>
