@@ -9,7 +9,8 @@ img{
 }
 ul{
     display: flex;
-    padding: px 15px;
+    padding: 0px 15px;
+    align-items: baseline;
     /* justify-content: space-around; */
 }
 li{
@@ -22,4 +23,20 @@ a{
     color: #000;
     font-size: 18px;
 
+}
+.primaryBtn{
+    cursor: pointer;
+    font-weight: bolder;
+    padding: 13px 25px;
+    border: none;
+    color: white;
+    border: #db183c;
+    border-radius: 15px;
+    margin-left: 15px;
+    transition: all 0.25s ease;
+    background: #db183c;
+}
+.primaryBtn:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px -10px rgba(219,24,44,0.6);
 }
