@@ -69,7 +69,7 @@ export default function Createpost() {
       <div className="createPost">
         {/* header  */}
         <div className="post-header">
-          <h1>Create New Post</h1>
+          <h1>Add New Post</h1>
           <button id='post-btn' onClick={() => { postDetails() }}>Share</button>
         </div>
         {/* image-preview  */}

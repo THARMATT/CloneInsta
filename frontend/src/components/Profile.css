@@ -32,11 +32,13 @@
     display: flex;
     flex-wrap: wrap;
     text-align: center;
-
+    align-items: center;
+    justify-content: start;
+margin-left: 2em;
 }
 .gallery img{
-    width: 30%;
-    height:15em;
+    width: 10em;
+    max-height:15em;
     margin:10px;
     object-fit: fill;
 }

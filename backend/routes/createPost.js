@@ -35,14 +35,14 @@ router.post("/createPost", requireLogin, (req, res) => {
 router.get("/allposts", requireLogin, (req, res) => {
 
   POST.find()
-    .populate("postedBy", "_id name").populate("comments.postedBy","_id name").then(posts => res.json(posts))
+    .populate("postedBy", "_id name").populate("comments.postedBy", "_id name").then(posts => res.json(posts))
     .catch(err => console.log(err))
 })
 
 //route for displaying  mypost
 router.get('/myposts', requireLogin, (req, res) => {
   POST.find({ postedBy: req.user._id })
-    .populate("postedBy", "_id name")
+    .populate("postedBy", "_id name").populate("comments.postedBy", "_id name")
     .then(myposts => { res.json(myposts) })
 })
 //like endpoint
@@ -58,7 +58,7 @@ router.put("/like", requireLogin, async (req, res) => {
       { new: true } // Option to return the updated document
     ).exec();
 
-    res.json(result);
+    res.json(result); 
   } catch (error) {
     res.status(422).json({ error: error.message });
   }
@@ -95,8 +95,8 @@ router.put("/comment", requireLogin, async (req, res) => {
     const result = await POST.findByIdAndUpdate(postId, {
       $push: { comments: comment },
     }, {
-      new:true
-    }) .populate('comments.postedBy', '_id name').populate("postedBy", "_id,name").exec();
+      new: true
+    }).populate('comments.postedBy', '_id name').populate("postedBy", "_id,name").exec();
     res.json(result);
   }
   catch (error) {
@@ -104,5 +104,27 @@ router.put("/comment", requireLogin, async (req, res) => {
   }
 })
 
+// Endpoint to delete a post
+router.delete("/deletePost/:postId", requireLogin, async (req, res) => {
+  try {
+    // Find the post by ID
+    const post = await POST.findOne({ _id: req.params.postId });
 
+    // Check if the post exists
+    if (!post) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+
+    // Check if the user is the owner of the post
+    if (post.postedBy.toString() === req.user._id.toString()) {
+      // If yes, remove the post
+      await post.remove();
+      return res.json({ message: "Successfully deleted" });
+    } else {
+      return res.status(403).json({ error: "Unauthorized to delete this post" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 module.exports = router;

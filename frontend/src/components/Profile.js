@@ -1,8 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import "./Profile.css";
+import PostDeatail from './PostDetail';
 
 export default function Profile() {
   const [posts, setPosts] = useState([]);
+const[show, setShow]=useState(false);
+const[pics,setPics]=useState([])
+
+const toggleDetails = (pics) => {
+  if (show) {
+    setShow(false)
+  }
+  else {
+    setShow(true)
+    setPics(pics);
+
+  }
+}
+
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,10 +66,11 @@ export default function Profile() {
         {/* gallery */}
         <div className="gallery">
           {posts.map((post) => (
-            <img key={post._id} src={post.photo} className="item" alt={`Post by ${post.author}`} />
+            <img key={post._id} src={post.photo} onClick={()=>{toggleDetails(posts)}} className="item" alt={`Post by ${post.author}`} />
           ))}
         </div>
       </div>
+    { show &&  <PostDeatail item={pics}/>} 
     </div>
   );
 }
