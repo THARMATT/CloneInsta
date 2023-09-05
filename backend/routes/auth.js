@@ -64,8 +64,9 @@ bcrypt.compare(password,savedUser.password)
 .then((match)=>{if(match){
    //
    const token= jwt.sign({_id:savedUser.id},Jwt_secret)
-   // console.log(token)
-   return res.status(200).json({message:"Signin Successfully",token:token})
+   const {name,_id,email,userName}=savedUser
+   console.log({token,user:{_id,name,email,userName}})
+   return res.status(200).json({token,user:{_id,name,email,userName}})
 }
 else{
    return res.status(422).json({error:"Invalid Credentials"})

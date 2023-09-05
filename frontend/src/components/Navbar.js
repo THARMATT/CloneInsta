@@ -29,12 +29,12 @@ const {setModalOpen}=useContext(LoginContext);
 
     return (
         <>
-            <div className="navbar" id="navbar">
+            <Link className="navbar" id="navbar" to="/">
                 <img src={logo} alt="" />
                 <ul className="nav-menu">
                     {loginStatus()}
                 </ul>
-            </div>
+            </Link>
         </>
     );
 }

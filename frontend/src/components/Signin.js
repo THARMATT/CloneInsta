@@ -45,7 +45,9 @@ const postData = () => {
       } else if (data.token) { // Check if the token field exists in the response
         notifyB("Signed In Successfully");
         console.log(data.token); //give token in console
-        localStorage.setItem("jwt", data.token);
+        localStorage.setItem("jwt", data.token); 
+        localStorage.setItem("user", JSON.stringify(data.user));
+        console.log(data.user);
         setUserLogin(true)
         navigate("/");
       } else {

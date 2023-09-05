@@ -1,5 +1,5 @@
 .darkBg{
-background-color: rgba(0,0,0,0.2);
+background-color: rgba(0,0,0,0.4);
 width: 100vw;
 height: 100vh;
 z-index:0;
@@ -44,11 +44,11 @@ position: absolute;
 }
 .modalHeader h5{
     font-weight: 700;
-    color: #484646;
+    color: #000000;
     display: inline;
 }
 .modalContent{
-    color: #000;
+    color: #1613136c;
     padding:10px
 
 }
