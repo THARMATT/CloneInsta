@@ -2,10 +2,10 @@ import React,{useContext,useEffect} from 'react';
 import logo from "../images/logo.png";
 import "../CSS/Navbar.css";
 import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
+
 import { LoginContext } from '../context/LoginContext';
 export default function Navbar({login}) {
-    const navigate=useNavigate();
+    
 const {setModalOpen}=useContext(LoginContext);
     const loginStatus = () => {
         const token = localStorage.getItem("jwt");
@@ -32,12 +32,12 @@ const {setModalOpen}=useContext(LoginContext);
 
     return (
         <>
-            <div className="navbar" id="navbar" to="/">
-                <img src={logo} alt="" onClick={navigate("/")}/>
+            <Link className="navbar" id="navbar" to="/">
+                <img src={logo} alt="" />
                 <ul className="nav-menu">
                     {loginStatus()}
                 </ul>
-            </div>
+            </Link>
         </>
     );
 }

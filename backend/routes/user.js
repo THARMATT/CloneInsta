@@ -11,7 +11,7 @@ router.get("/user/:id", async (req, res) => {
         const user = await USER.findOne({ _id: req.params.id })
             .select("-password")
         const post = await POST.find({ postedBy: req.params.id })
-            .populate("postedBy", "_id").populate("comments.postedBy", "_id name Photo")
+            .populate("postedBy", "_id name Photo").populate("comments.postedBy", "_id name Photo")
             .exec();
         res.status(200).json({ user: user, post: post });
     }

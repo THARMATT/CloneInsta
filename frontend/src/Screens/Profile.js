@@ -64,7 +64,7 @@ const handleChangeProfile = () => {
         <div className="profile-frame">
           <div className="profile-pic">
             <img
-            onClick={handleChangeProfile} src= {user.Photo?user.Photo:picLink} alt="" />
+            onClick={handleChangeProfile} src= {user.Photo?user.Photo:picLink} alt="" style={{cursor:"pointer"}} />
           </div>
           {/* profile data */}
           <div className="profile-data">

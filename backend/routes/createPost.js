@@ -6,18 +6,17 @@ const requireLogin = require('../middlewares/requireLogin');
 const POST = mongoose.model("POST");
 
 // Endpoint for post
-
 router.post("/createPost", requireLogin, (req, res) => {
   const { pic, body } = req.body;
-  console.log(pic)
+  console.log(pic);
   if (!pic || !body) {
     return res.status(422).json({ error: "Please add all the fields" });
   }
-  console.log(req.user)
+  console.log(req.user);
   const post = new POST({
     photo: pic,
     body,
-    postedBy: req.user
+    postedBy: req.user,
   });
 
   try {
@@ -30,23 +29,26 @@ router.post("/createPost", requireLogin, (req, res) => {
   }
 });
 
-
-// route for fetching all posts
+// Route for fetching all posts
 router.get("/allposts", requireLogin, (req, res) => {
-
   POST.find()
-    .populate("postedBy", "_id name Photo").populate("comments.postedBy", "_id name Photo").sort("-createdAt").then(posts => res.json(posts))
-    .catch(err => console.log(err))
-})
+    .populate("postedBy", "_id name Photo")
+    .populate("comments.postedBy", "_id name Photo")
+    .sort("-createdAt")
+    .then((posts) => res.json(posts))
+    .catch((err) => console.log(err));
+});
 
-//route for displaying  mypost
+// Route for displaying my posts
 router.get('/myposts', requireLogin, (req, res) => {
   POST.find({ postedBy: req.user._id })
-    .populate("postedBy", "_id name Photo").populate("comments.postedBy", "_id name Photo").sort("-createdAt")
-    .then(myposts => { res.json(myposts) })
-})
+    .populate("postedBy", "_id name Photo")
+    .populate("comments.postedBy", "_id name Photo")
+    .sort("-createdAt")
+    .then(myposts => { res.json(myposts) });
+});
 
-//like endpoint
+// Like endpoint
 router.put("/like", requireLogin, async (req, res) => {
   const postId = req.body.postId;
 
@@ -59,14 +61,13 @@ router.put("/like", requireLogin, async (req, res) => {
       { new: true } // Option to return the updated document
     ).populate("postedBy", "_id Photo name").exec();
 
-    res.json(result); 
+    res.json(result);
   } catch (error) {
     res.status(422).json({ error: error.message });
   }
 });
 
-
-//unlike endpoint
+// Unlike endpoint
 router.put("/unlike", requireLogin, async (req, res) => {
   const postId = req.body.postId;
 
@@ -85,25 +86,27 @@ router.put("/unlike", requireLogin, async (req, res) => {
   }
 });
 
-//COMMENT 
+// Comment endpoint
 router.put("/comment", requireLogin, async (req, res) => {
   const postId = req.body.postId;
   const comment = {
     comment: req.body.text,
-    postedBy: req.user._id
-  }
+    postedBy: req.user._id,
+  };
+
   try {
     const result = await POST.findByIdAndUpdate(postId, {
       $push: { comments: comment },
     }, {
-      new: true
-    }).populate('comments.postedBy', '_id name Photo').populate("postedBy", "_id,name Photo").exec();
+      new: true,
+    }).populate('comments.postedBy', '_id name Photo').populate("postedBy", "_id name Photo").exec();
+
     res.json(result);
   }
   catch (error) {
     res.status(422).json({ error: error.message });
   }
-})
+});
 
 // Endpoint to delete a post
 router.delete("/deletePost/:postId", requireLogin, async (req, res) => {
@@ -130,15 +133,15 @@ router.delete("/deletePost/:postId", requireLogin, async (req, res) => {
   }
 });
 
-//to show following post
-router.get("/myfollowingpost",requireLogin,(req,res)=>{
-  POST.find({postedBy:{$in:req.user.following}})
-  .populate("postedBy","_id name")
-  .populate("comments.postedBy","_id name Photo")
-  .then (posts=>{
-    res.json(posts)
-  })
-  .catch(err=>{console.log(err)})
-})
+// To show following posts
+router.get("/myfollowingpost", requireLogin, (req, res) => {
+  POST.find({ postedBy: { $in: req.user.following } })
+    .populate("postedBy", "_id name Photo")
+    .populate("comments.postedBy", "_id name Photo")
+    .then(posts => {
+      res.json(posts);
+    })
+    .catch(err => { console.log(err) });
+});
 
 module.exports = router;

@@ -19,7 +19,6 @@ const notifyB=(msg)=>toast.success(msg)
       navigate('/signup');
     }
 
-
     // Fetching all posts
     fetch('http://localhost:5000/allposts', {
       headers: {
