@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 export default function Home() {
+  var picLink="https://cdn-icons-png.flaticon.com/128/64/64572.png"
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [comment, setComment] = useState("")
@@ -130,7 +131,7 @@ const notifyB=(msg)=>toast.success(msg)
             <div className="card-header">
               <div className="card-pic">
                 <img
-                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.L8bs33mJBAUBA01wBfJnjQHaHa%26pid%3DApi&f=1&ipt=5dd6e5ecf584144cff507e2485ef564c539477bfb551c31f2a3cfd67da9f91b0&ipo=images"
+                  src={posts.postedBy.Photo?posts.postedBy.Photo:picLink}
                   alt=""
                 />
                 <h5>
@@ -212,7 +213,7 @@ const notifyB=(msg)=>toast.success(msg)
                   <div className="card-header" style={{ borderBottom: "1px solid #00000029" }}>
                     <div className="card-pic">
                       <img
-                        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.L8bs33mJBAUBA01wBfJnjQHaHa%26pid%3DApi&f=1&ipt=5dd6e5ecf584144cff507e2485ef564c539477bfb551c31f2a3cfd67da9f91b0&ipo=images"
+                        src={item.postedBy.Photo?item.postedBy.Photo:picLink}
                         alt=""
                       />
                       <h5>{item.postedBy.name}</h5>

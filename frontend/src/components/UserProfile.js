@@ -4,6 +4,7 @@ import "./Profile.css";
 import { useParams } from 'react-router-dom';
 // import { set } from 'mongoose';
 export default function UserProfile() {
+    var picLink="https://cdn-icons-png.flaticon.com/128/64/64572.png"
     const [post, setPost] = useState([]);
     const [user, setUser] = useState("");
 const [isFollow, setIsFollow] = useState(false)
@@ -83,7 +84,7 @@ const unfollowUser=(userId)=>{
                 {/* profile frame */}
                 <div className="profile-frame">
                     <div className="profile-pic">
-                        <img src="https://tse3.mm.bing.net/th?id=OIP.HRhauNP6-0u7QagwJu4PCgAAAA&pid=Api&P=0&h=180" alt="" />
+                        <img src={user.Photo? user.Photo:picLink} alt="" />
                     </div>
                     {/* profile data */}
                     <div className="profile-data">

@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react';
 import "./Profile.css";
 import PostDetail from './PostDetail';
 import ProfilePic from './ProfilePic';
-
+import { useNavigate } from 'react-router-dom';
 export default function Profile() {
+const navigate=useNavigate();
+var picLink="https://cdn-icons-png.flaticon.com/128/64/64572.png"
   const [posts, setPosts] = useState([]);
 const[show, setShow]=useState(false);
 const[pics,setPics]=useState([])
 const[changePic,setChangePic]=useState(false)
+const [user, setUser] = useState("")
+
 const toggleDetails = (pics) => {
   if (show) {
     setShow(false)
@@ -24,13 +28,14 @@ const handleChangeProfile = () => {
     setChangePic(false);
   } else {
     setChangePic(true);
+    
   }
 }
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/myposts", {
+        const response = await fetch(`http://localhost:5000/user/${JSON.parse(localStorage.getItem("user"))._id}`, {
           headers: {
             "Authorization": "Bearer " + localStorage.getItem("jwt")
           }
@@ -41,7 +46,9 @@ const handleChangeProfile = () => {
         }
 
         const result = await response.json();
-        setPosts(result);
+        setPosts(result.post);
+        setUser(result.user)
+               
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -57,16 +64,16 @@ const handleChangeProfile = () => {
         <div className="profile-frame">
           <div className="profile-pic">
             <img
-            onClick={handleChangeProfile} src="https://tse3.mm.bing.net/th?id=OIP.HRhauNP6-0u7QagwJu4PCgAAAA&pid=Api&P=0&h=180" alt="" />
+            onClick={handleChangeProfile} src= {user.Photo?user.Photo:picLink} alt="" />
           </div>
           {/* profile data */}
           <div className="profile-data">
             <h1>{JSON.parse(localStorage.getItem("user")).name}</h1>
             <div className="profile-info">
-              <p>{posts.length} posts</p>
+              <p>{posts?posts.length:"0"} posts</p>
               {/* Replace these static numbers with dynamic data */}
-              <p>500 followers</p>
-              <p>400 following</p>
+              <p> {user.followers?user.followers.length:"0"} followers</p>
+              <p>{user.following?user.following.length:"0"} following</p>
             </div>
           </div>
         </div>

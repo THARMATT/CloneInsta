@@ -11,7 +11,7 @@ router.get("/user/:id", async (req, res) => {
         const user = await USER.findOne({ _id: req.params.id })
             .select("-password")
         const post = await POST.find({ postedBy: req.params.id })
-            .populate("postedBy", "_id")
+            .populate("postedBy", "_id").populate("comments.postedBy", "_id name Photo")
             .exec();
         res.status(200).json({ user: user, post: post });
     }
@@ -80,26 +80,6 @@ router.put("/unfollow", requireLogin, async (req, res) => {
     }
   });
   
-  //UPLOAD profile pic
-  router.put("/uploadprofilepic", requireLogin, async (req, res) => {
-    try {
-      const data = await USER.findByIdAndUpdate(
-        req.user._id,
-        { $set: { Photo: req.body.pic } },
-        { new: true }
-      ).exec();
-  
-      if (!data) {
-        // Handle the case where the user with req.user._id is not found
-        return res.status(404).json({ error: "User not found" });
-      }
-  
-      res.json(data);
-    } catch (error) {
-      return res.status(500).json({ error: "Server error" });
-    }
-  });
-
 
   //upload profile
 router.put("/uploadprofilepic", requireLogin, async (req, res) => {

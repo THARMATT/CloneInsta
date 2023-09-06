@@ -35,16 +35,17 @@ router.post("/createPost", requireLogin, (req, res) => {
 router.get("/allposts", requireLogin, (req, res) => {
 
   POST.find()
-    .populate("postedBy", "_id name").populate("comments.postedBy", "_id name").then(posts => res.json(posts))
+    .populate("postedBy", "_id name Photo").populate("comments.postedBy", "_id name Photo").sort("-createdAt").then(posts => res.json(posts))
     .catch(err => console.log(err))
 })
 
 //route for displaying  mypost
 router.get('/myposts', requireLogin, (req, res) => {
   POST.find({ postedBy: req.user._id })
-    .populate("postedBy", "_id name").populate("comments.postedBy", "_id name")
+    .populate("postedBy", "_id name Photo").populate("comments.postedBy", "_id name Photo").sort("-createdAt")
     .then(myposts => { res.json(myposts) })
 })
+
 //like endpoint
 router.put("/like", requireLogin, async (req, res) => {
   const postId = req.body.postId;
@@ -56,7 +57,7 @@ router.put("/like", requireLogin, async (req, res) => {
         $push: { likes: req.user._id },
       },
       { new: true } // Option to return the updated document
-    ).populate("postedBy", "_id name").exec();
+    ).populate("postedBy", "_id Photo name").exec();
 
     res.json(result); 
   } catch (error) {
@@ -76,7 +77,7 @@ router.put("/unlike", requireLogin, async (req, res) => {
         $pull: { likes: req.user._id },
       },
       { new: true } // Option to return the updated document
-    ).populate("postedBy", "_id name").exec();
+    ).populate("postedBy", "_id name Photo").exec();
 
     res.json(result);
   } catch (error) {
@@ -96,7 +97,7 @@ router.put("/comment", requireLogin, async (req, res) => {
       $push: { comments: comment },
     }, {
       new: true
-    }).populate('comments.postedBy', '_id name').populate("postedBy", "_id,name").exec();
+    }).populate('comments.postedBy', '_id name Photo').populate("postedBy", "_id,name Photo").exec();
     res.json(result);
   }
   catch (error) {
@@ -108,7 +109,7 @@ router.put("/comment", requireLogin, async (req, res) => {
 router.delete("/deletePost/:postId", requireLogin, async (req, res) => {
   try {
     // Find the post by ID
-    const post = await POST.findOne({ _id: req.params.postId }).populate("postedBy", "_id").exec();
+    const post = await POST.findOne({ _id: req.params.postId }).populate("postedBy", "_id name Photo").exec();
 
     // Check if the post exists
     if (!post) {
@@ -133,7 +134,7 @@ router.delete("/deletePost/:postId", requireLogin, async (req, res) => {
 router.get("/myfollowingpost",requireLogin,(req,res)=>{
   POST.find({postedBy:{$in:req.user.following}})
   .populate("postedBy","_id name")
-  .populate("comments.postedBy","_id name")
+  .populate("comments.postedBy","_id name Photo")
   .then (posts=>{
     res.json(posts)
   })
