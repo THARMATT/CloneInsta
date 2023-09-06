@@ -1,3 +1,4 @@
+const { ObjectId } = require("mongodb");
 const mongoose=require("mongoose");
 const userSchema= new mongoose.Schema({
     name:{
@@ -15,6 +16,11 @@ const userSchema= new mongoose.Schema({
     password:{
         type:String,
         required:true
-    }
+    },
+    Photo:{
+        type:String,
+    },
+    followers:[{type:ObjectId,ref:"USER"}],
+    following:[{type:ObjectId,ref:"USER"}]
 })
 mongoose.model("USER",userSchema);

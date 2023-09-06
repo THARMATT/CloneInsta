@@ -10,6 +10,7 @@ require('./models/post')
 app.use(express.json())//middleware  
 app.use(require('./routes/auth'))
 app.use(require('./routes/createPost'))
+app.use(require('./routes/user'))
 
 mongoose.connect(mongoUrl);
 mongoose.connection.on("connected",()=>{

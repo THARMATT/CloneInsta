@@ -43,3 +43,52 @@ margin-left: 2em;
     object-fit: fill;
     cursor: pointer;
 }
+.followBtn{
+    cursor: pointer;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    border: none;
+    color: white;
+    background: #0115eb;
+    transition: all .25s ease;
+    margin-left: 20px;
+   
+}
+.followBtn:hover{
+    transform: scale(1.1);
+    box-shadow: 0 10px 20px -10px #0115eb;
+}
+.changePic{
+    background-color:#fff ;
+    border-radius: 20px;
+}
+.upload-btn{
+    cursor:pointer;
+    border: none;
+    font-weight: 600;
+    font-size: 15px;
+    background: none;
+    color: #1EA1F7;
+    
+}
+.remove-btn{
+    cursor:pointer;
+    border: none;
+    font-weight: 600;
+    font-size: 15px;
+    background: none;
+    color: #ED4956;
+    
+}
+.cancel-pic-btn{
+    cursor:pointer;
+    border: none;
+    font-weight: 600;
+    font-size: 15px;
+    background: none;
+}
+.changePic div{
+    padding: 15px 80px;
+}

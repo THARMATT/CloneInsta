@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import "./Profile.css";
-import PostDeatail from './PostDetail';
+import PostDetail from './PostDetail';
+import ProfilePic from './ProfilePic';
 
 export default function Profile() {
   const [posts, setPosts] = useState([]);
 const[show, setShow]=useState(false);
 const[pics,setPics]=useState([])
-
+const[changePic,setChangePic]=useState(false)
 const toggleDetails = (pics) => {
   if (show) {
     setShow(false)
@@ -18,7 +19,13 @@ const toggleDetails = (pics) => {
   }
 }
 
-
+const handleChangeProfile = () => {
+  if (changePic) {
+    setChangePic(false);
+  } else {
+    setChangePic(true);
+  }
+}
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,7 +56,8 @@ const toggleDetails = (pics) => {
         {/* profile frame */}
         <div className="profile-frame">
           <div className="profile-pic">
-            <img src="https://tse3.mm.bing.net/th?id=OIP.HRhauNP6-0u7QagwJu4PCgAAAA&pid=Api&P=0&h=180" alt="" />
+            <img
+            onClick={handleChangeProfile} src="https://tse3.mm.bing.net/th?id=OIP.HRhauNP6-0u7QagwJu4PCgAAAA&pid=Api&P=0&h=180" alt="" />
           </div>
           {/* profile data */}
           <div className="profile-data">
@@ -77,7 +85,10 @@ const toggleDetails = (pics) => {
           ))}
         </div>
       </div>
-    { show &&  <PostDeatail item={pics} toggleDetails={toggleDetails}/>} 
+    { show &&  <PostDetail item={pics} toggleDetails={toggleDetails}/>} 
+    {
+      changePic && <ProfilePic handleChangeProfile={handleChangeProfile}/>
+    }
     </div>
   );
 }

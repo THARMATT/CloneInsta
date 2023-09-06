@@ -56,7 +56,7 @@ router.put("/like", requireLogin, async (req, res) => {
         $push: { likes: req.user._id },
       },
       { new: true } // Option to return the updated document
-    ).exec();
+    ).populate("postedBy", "_id name").exec();
 
     res.json(result); 
   } catch (error) {
@@ -76,7 +76,7 @@ router.put("/unlike", requireLogin, async (req, res) => {
         $pull: { likes: req.user._id },
       },
       { new: true } // Option to return the updated document
-    ).exec();
+    ).populate("postedBy", "_id name").exec();
 
     res.json(result);
   } catch (error) {
@@ -128,5 +128,16 @@ router.delete("/deletePost/:postId", requireLogin, async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
+//to show following post
+router.get("/myfollowingpost",requireLogin,(req,res)=>{
+  POST.find({postedBy:{$in:req.user.following}})
+  .populate("postedBy","_id name")
+  .populate("comments.postedBy","_id name")
+  .then (posts=>{
+    res.json(posts)
+  })
+  .catch(err=>{console.log(err)})
+})
 
 module.exports = router;

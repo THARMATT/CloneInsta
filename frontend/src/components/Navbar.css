@@ -29,12 +29,12 @@ a{
 }
 .primaryBtn{
     cursor: pointer;
-    font-weight: bolder;
-    padding: 13px 25px;
+    font-weight: 600;
+    padding: 12px 18px;
     border: none;
     color: white;
     border: #db183c;
-    border-radius: 15px;
+    border-radius: 5px;
     margin-left: 15px;
     transition: all 0.25s ease;
     background: #db183c;

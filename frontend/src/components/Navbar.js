@@ -12,6 +12,7 @@ const {setModalOpen}=useContext(LoginContext);
                 <>
                     <Link to="/profile"><li>Profile</li></Link>
                     <Link to="/createPost"><li>Add Post</li></Link>
+                    <Link  style={{marginLeft:"0px"}}to="/followingpost"><li>My Following</li></Link>
                     <Link to={""}> <button className="primaryBtn" onClick={()=>{setModalOpen(true)}}>Log Out</button>
                     </Link>
                 </>
