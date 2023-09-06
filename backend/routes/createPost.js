@@ -108,7 +108,7 @@ router.put("/comment", requireLogin, async (req, res) => {
 router.delete("/deletePost/:postId", requireLogin, async (req, res) => {
   try {
     // Find the post by ID
-    const post = await POST.findOne({ _id: req.params.postId });
+    const post = await POST.findOne({ _id: req.params.postId }).populate("postedBy", "_id").exec();
 
     // Check if the post exists
     if (!post) {
@@ -116,15 +116,17 @@ router.delete("/deletePost/:postId", requireLogin, async (req, res) => {
     }
 
     // Check if the user is the owner of the post
-    if (post.postedBy.toString() === req.user._id.toString()) {
-      // If yes, remove the post
-      await post.remove();
+    if (post.postedBy._id.toString() === req.user._id.toString()) {
+      // If yes, delete the post using the model
+      await POST.deleteOne({ _id: req.params.postId });
       return res.json({ message: "Successfully deleted" });
     } else {
       return res.status(403).json({ error: "Unauthorized to delete this post" });
     }
   } catch (error) {
+    console.error(error); // Log the error for debugging purposes
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
 module.exports = router;

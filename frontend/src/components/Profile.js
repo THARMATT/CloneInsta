@@ -66,11 +66,18 @@ const toggleDetails = (pics) => {
         {/* gallery */}
         <div className="gallery">
           {posts.map((post) => (
-            <img key={post._id} src={post.photo} onClick={()=>{toggleDetails(posts)}} className="item" alt={`Post by ${post.author}`} />
+            // <img key={post._id} src={post.photo} onClick={()=>{toggleDetails(posts)}} className="item" alt={`Post by ${post.author}`} />
+            <img
+  key={post._id}
+  src={post.photo}
+  onClick={() => toggleDetails(post)}
+  className="item"
+  alt={`Post by ${post.author}`}
+/>
           ))}
         </div>
       </div>
-    { show &&  <PostDeatail item={pics}/>} 
+    { show &&  <PostDeatail item={pics} toggleDetails={toggleDetails}/>} 
     </div>
   );
 }
