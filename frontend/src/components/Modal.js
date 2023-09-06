@@ -1,5 +1,5 @@
 import React from 'react'
-import './Modal.css';
+import '../CSS/Modal.css';
 import { useNavigate } from 'react-router-dom';
 import {RiCloseLine} from "react-icons/ri"
 export default function Modal({setModalOpen}) {

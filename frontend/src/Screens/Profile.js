@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import "./Profile.css";
-import PostDetail from './PostDetail';
-import ProfilePic from './ProfilePic';
+import "../CSS/Profile.css";
+import PostDetail from '../components/PostDetail';
+import ProfilePic from '../components/ProfilePic';
 import { useNavigate } from 'react-router-dom';
 export default function Profile() {
 const navigate=useNavigate();

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import "./Profile.css";
+import "../CSS/Profile.css";
 
 import { useParams } from 'react-router-dom';
 // import { set } from 'mongoose';

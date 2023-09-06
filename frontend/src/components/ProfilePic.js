@@ -80,7 +80,7 @@ export default function ProfilePic({ handleChangeProfile }) {
           </div>
 
           <div style={{ borderTop: "1px solid #00000030" }}>
-            <button className="remove-btn">Remove Photo</button>
+            <button className="remove-btn" onClick={()=>{setUrl(null); postPic();}}>Remove Photo</button>
           </div>
           <div style={{ borderTop: "1px solid #00000030" }}>
             <button onClick={handleChangeProfile} className='cancel-pic-btn'>Cancel</button>

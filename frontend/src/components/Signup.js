@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import { Link,useNavigate } from "react-router-dom";
 import logo from '../images/logo.png';
-import "./signup.css"
+import "../CSS/signup.css"
 import { toast } from 'react-toastify';
 
 export default function Signup() {
