@@ -1,0 +1,206 @@
+.profile{
+    max-width: 600px;
+    margin:10px auto 
+}
+.profile-frame{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+.profile-pic>img{
+    width: 5rem;
+    height:5rem;
+    object-fit:contain;
+    border-radius:60%;
+   
+}
+.profile-data{
+    text-align: left;
+
+}
+.profile-info{
+    display: flex;
+    /* padding:0px 5px; */
+    justify-content: space-evenly;
+    
+}
+.profile-info>p{
+    margin-top: 2px;
+   padding: 4px;
+}
+.gallery{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+    justify-content: start;
+margin-left: 2em;
+}
+.gallery img{
+    width: 10em;
+    max-height:15em;
+    margin:10px;
+    object-fit: fill;
+    cursor: pointer;
+}
+.followBtn{
+    cursor: pointer;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    border: none;
+    color: white;
+    background: #0115eb;
+    transition: all .25s ease;
+    margin-left: 20px;
+   
+}
+.followBtn:hover{
+    transform: scale(1.1);
+    box-shadow: 0 10px 20px -10px #0115eb;
+}
+.changePic{
+    background-color:#fff ;
+    border-radius: 20px;
+}
+.upload-btn{
+    cursor:pointer;
+    border: none;
+    font-weight: 600;
+    font-size: 15px;
+    background: none;
+    color: #1EA1F7;
+    
+}
+.remove-btn{
+    cursor:pointer;
+    border: none;
+    font-weight: 600;
+    font-size: 15px;
+    background: none;
+    color: #ED4956;
+    
+}
+.cancel-pic-btn{
+    cursor:pointer;
+    border: none;
+    font-weight: 600;
+    font-size: 15px;
+    background: none;
+}
+.changePic div{
+    padding: 15px 80px;
+}
+/* @media (min-width: 350px) and (max-width: 550px) {
+    .profile-pic>img{
+        width: 5rem;
+        height:5rem;
+        object-fit:contain;
+        border-radius:60%;
+       
+    }
+    .gallery img{
+        width: 6em;
+        max-height:15em;
+        
+        object-fit: fill;
+        cursor: pointer;
+    }
+    .gallery{
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+        align-items: center;
+        justify-content: start;
+    margin-left: 1em;
+    }
+
+
+} */
+/* @media screen and (max-width: 350px) {
+    .profile-pic>img{
+        width: 3rem;
+        height:3rem;
+        object-fit:contain;
+        border-radius:60%;
+       
+    }
+    .gallery img{
+        width: 4em;
+        max-height:15em;
+        
+        object-fit: fill;
+        cursor: pointer;
+    }
+    .gallery{
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+        align-items: center;
+        justify-content: start;
+    margin-left: 1em;
+    }
+   
+
+
+} */
+
+/* Your existing CSS styles */
+
+/* Media Query for screens between 350px and 550px */
+@media (min-width: 350px) and (max-width: 550px) {
+    .profile-pic>img {
+      width: 5rem;
+      height: 5rem;
+      object-fit: contain;
+      border-radius: 60%;
+    }
+  
+    .gallery img {
+      width: 6em;
+      max-height: 15em;
+      object-fit: fill;
+      cursor: pointer;
+    }
+  
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      text-align: center;
+      align-items: center;
+      justify-content: start;
+      margin-left: 1em;
+    }
+  }
+  
+  /* Media Query for screens below 350px */
+  @media screen and (max-width: 350px) {
+    .profile-pic>img {
+      width: 3rem;
+      height: 3rem;
+      object-fit: contain;
+      border-radius: 60%;
+    }
+  
+    .gallery img {
+      width: 4em;
+      max-height: 15em;
+      object-fit: fill;
+      cursor: pointer;
+    }
+  
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      text-align: center;
+      align-items: center;
+      justify-content: start;
+      margin-left: 1em;
+    }
+    .profile-info>p{
+        font-size: .8rem;
+    }
+  }
+  

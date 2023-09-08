@@ -3,6 +3,7 @@ const app=express();
 const cors=require("cors")
 const PORT=process.env.port||5000;
 app.use(cors())
+const path =require("path")
 const mongoose=require("mongoose");
 const{ mongoUrl}=require("./keys");
  require('./models/model')
@@ -19,6 +20,20 @@ mongoose.connection.on("connected",()=>{
 mongoose.connection.on("error",()=>{
     console.log("failed to connect to mongodb")
 })
+
+//serving the frontend
+app.use(express.static(path.join(__dirname,"./frontend/build")))
+
+app.get("*",(req,res)=>{
+    res.sendFile(
+        path.join(__dirname,"./frontend/build/index.html"),
+        function(err){
+            res.status(500).send(err)
+        }
+
+    )
+})
+
 app.listen(PORT,()=>{
     console.log("server is running on port:"+PORT)
 })
