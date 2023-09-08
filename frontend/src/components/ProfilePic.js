@@ -46,6 +46,8 @@ export default function ProfilePic({ handleChangeProfile }) {
     ).then(res => res.json()).then(data => {
       handleChangeProfile();
       window.location.reload();
+      console.log("profile UPLOADED");
+      notifyB("Profile Updated")
       navigate('/profile')
       
       console.log(data)

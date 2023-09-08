@@ -97,5 +97,5 @@ const handleChangeProfile = () => {
       changePic && <ProfilePic handleChangeProfile={handleChangeProfile}/>
     }
     </div>
-  );
+  )
 }

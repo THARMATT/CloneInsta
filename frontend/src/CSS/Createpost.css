@@ -1,6 +1,6 @@
 .createPost{
     max-width:500px;
-    margin:10px auto;
+    margin:40px auto;
     border:1px solid rgb(173,173,173);
     border-radius: 5px;
 }
@@ -23,15 +23,26 @@ display: flex;
 }
 .details{
     border-top:1px solid rgb(173,173,173);
+    width: 100%;
 }
 textarea{
-    width:90%;
+    width:100%;
     outline:none;
     border:none;
+    margin:10px 15px;
 }
 #output{
     width:300px;
     outline:none;
     border:none;
     margin-top: 5px;
+}
+@media screen and (max-width: 400px) {
+    .createPost{
+        max-width:300px;
+        margin:40px auto;
+        border:1px solid rgb(173,173,173);
+        border-radius: 5px;
+    }
+
 }

@@ -11,6 +11,9 @@ export default function Home() {
   const [show, setShow] = useState(false)
   const [item, setItem] = useState([])
 
+let limit =10;
+let skip=0;
+
   const notifyA=(msg)=>toast.error(msg)
 const notifyB=(msg)=>toast.success(msg)
   useEffect(() => {
@@ -19,17 +22,38 @@ const notifyB=(msg)=>toast.success(msg)
       navigate('/signup');
     }
 
-    // Fetching all posts
-    fetch('http://localhost:5000/allposts', {
+   fetchPosts() 
+
+  window.addEventListener("scroll",handleScroll)
+  return ()=>{
+    window.removeEventListener("scroll",handleScroll)
+  }
+  }, [navigate]); // Include navigate as a dependency
+
+  //fetch post lazy method
+const fetchPosts=()=>{
+  // Fetching all posts
+  fetch(`http://localhost:5000/allposts?limit=${limit}&skip=${skip}`, {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('jwt'),
       },
     })
       .then((res) => res.json())
-      .then((result) => setData(result))
-      .catch((err) => console.error(err)); // Use console.error for error logging
-  }, [navigate]); // Include navigate as a dependency
+      .then((result) =>{ 
+        console.log(result)
 
+        setData((data)=>[...data,...result])})
+      .catch((err) => console.error(err)); 
+}
+//scroll
+
+const handleScroll=()=>{
+
+  if(document.documentElement.clientHeight + window.pageYOffset>=document.documentElement.scrollHeight){
+    skip=skip+10;
+    fetchPosts()
+  }
+}
   //togglecomment
   const toggleComment = (posts) => {
     if (show) {

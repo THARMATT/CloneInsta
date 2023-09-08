@@ -4,6 +4,8 @@ import { Link ,useNavigate } from 'react-router-dom';
 import logo from "../images/logo.png"
 import { toast } from 'react-toastify';
 import { LoginContext } from '../context/LoginContext';
+import { GoogleLogin } from '@react-oauth/google';
+
 export default function Signin() {
   const {setUserLogin}=useContext(LoginContext)
   const navigate=useNavigate()
@@ -17,10 +19,11 @@ const notifyA=(msg)=>toast.error(msg)
 const notifyB=(msg)=>toast.success(msg)
 const emailRegex=/.*@[a-z0-9.-]*/
 
+
 const postData = () => {
   // Checking email
   if (!emailRegex.test(email)) {
-    console.log("email ka chkrr");
+    console.log("Invalid Credentials");
     notifyA("Invalid credentials");
     return;
   } else {
@@ -76,7 +79,9 @@ const postData = () => {
             <input type="password" name="password" id="password" placeholder="password" value={password} onChange={(e)=>{setPassword(e.target.value)}} />
           </div>
           <input type="submit" name="submit"  id="login-btn" value="Sign In" onClick={()=>{postData()}}/>
+       
         </div>
+        
         <div className="login2">
           Don't have an account? <Link to="/signup"><span>Sign Up</span> </Link>
         </div>

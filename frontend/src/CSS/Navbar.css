@@ -1,45 +1,97 @@
-img{
-    width:10%;
-    object-fit:contain;
+img {
+  width: 8rem;
+  object-fit: contain;
 }
-#navbar{
-    display:flex;
-    justify-content: space-around;
-    box-shadow: 1px 5px 5px #e0dcdc ;
- position:sticky;
- top:0;
- background-color: white;
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 1px 2px 2px #e0dcdc;
+  position: sticky;
+  width: 100%;
+  /* height:100px; */
+  top: 0;
+  background-color: white;
+  align-items: center;
 }
-ul{
-    display: flex;
-    padding: 0px 15px;
-    align-items: baseline;
-    /* justify-content: space-around; */
+.nav-mobile {
+  display: none;
 }
-li{
-    list-style: none;
-    margin-left: 10px;
-    padding :1px 15px;
+ul {
+  display: flex;
+  padding: 0px 15px;
+  align-items: baseline;
+  /* justify-content: space-around; */
 }
-a{
-    text-decoration:none ;
-    color: #000;
-    font-size: 18px;
+li {
+  list-style: none;
+  margin-left: 10px;
+  padding: 1px 15px;
+}
+a {
+  text-decoration: none;
+  color: #000;
+  font-size: 18px;
+}
+.primaryBtn {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 12px 18px;
+  border: none;
+  color: white;
+  border: #db183c;
+  border-radius: 5px;
+  margin-left: 15px;
+  transition: all 0.25s ease;
+  background: #db183c;
+}
+.primaryBtn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px -10px rgba(219, 24, 44, 0.6);
+}
 
-}
-.primaryBtn{
-    cursor: pointer;
-    font-weight: 600;
-    padding: 12px 18px;
-    border: none;
-    color: white;
-    border: #db183c;
-    border-radius: 5px;
-    margin-left: 15px;
-    transition: all 0.25s ease;
-    background: #db183c;
-}
-.primaryBtn:hover{
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px -10px rgba(219,24,44,0.6);
+
+
+@media screen and (max-width: 800px) {
+  /* Hide the logo and the regular navigation menu */
+  #instalogo {
+    display: none;
+  }
+  ul.nav-menu {
+    display: none;
+  }
+
+  /* Display the mobile navigation */
+  .nav-mobile {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* Update styles for the navbar to move it to the bottom */
+  .navbar {
+    width: 100%;
+    background: none;
+    flex-shrink:inherit;
+    position: fixed;
+    width: 100%;
+    bottom:0;
+    top: auto;
+  }
+
+
+  .navbar ul {
+    margin: 0;
+    padding: 10px 0px;
+    background-color: white;
+    box-shadow: 1px -1px 2px #e0dcdc;
+  }
+  
+  #signinlogo{
+    width: 2rem;
+  object-fit: contain;
+  }
+  #signuplogo{
+    width: 2rem;
+    object-fit: contain;
+  }
 }

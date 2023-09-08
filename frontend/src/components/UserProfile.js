@@ -99,8 +99,8 @@ const unfollowUser=(userId)=>{
                         <div className="profile-info">
                             <p>{post.length} post</p>
                             {/* Replace these static numbers with dynamic data */}
-                            <p>{user.followers?user.followers.length:"100"} followers</p>
-                            <p>{user.following?user.following.length:"100"} following</p>
+                            <p>{user.followers?user.followers.length:"0"} followers</p>
+                            <p>{user.following?user.following.length:"0"} following</p>
                         </div>
                     </div>
                 </div>

@@ -86,15 +86,15 @@ export default function Createpost() {
         <div className="details">
           <div className="card-header">
             <div className="card-pic">
-              <img src="https://tse3.mm.bing.net/th?id=OIP.HRhauNP6-0u7QagwJu4PCgAAAA&pid=Api&P=0&h=180" alt="" />
+              {/* <img src="https://tse3.mm.bing.net/th?id=OIP.HRhauNP6-0u7QagwJu4PCgAAAA&pid=Api&P=0&h=180" alt="" /> */}
 
-            </div><h5>Lavesh</h5>
+            </div>
 
           </div>
           <textarea value={body} onChange={(e) => {
             setBody(e.target.value)
 
-          }} type="text" placeholder='Write a caption'></textarea>
+          }} type="text" placeholder='Write a Caption..'></textarea>
         </div>
       </div>
     </div>

@@ -17,7 +17,7 @@ router.post("/createPost", requireLogin, (req, res) => {
     photo: pic,
     body,
     postedBy: req.user,
-  });
+  })
 
   try {
     post.save().then((result) => {
@@ -31,9 +31,13 @@ router.post("/createPost", requireLogin, (req, res) => {
 
 // Route for fetching all posts
 router.get("/allposts", requireLogin, (req, res) => {
+  let limit=req.query.limit
+  let skip = req.query.skip
   POST.find()
     .populate("postedBy", "_id name Photo")
     .populate("comments.postedBy", "_id name Photo")
+    .skip(parseInt(skip))
+    .limit(parseInt(limit))
     .sort("-createdAt")
     .then((posts) => res.json(posts))
     .catch((err) => console.log(err));
@@ -137,7 +141,7 @@ router.delete("/deletePost/:postId", requireLogin, async (req, res) => {
 router.get("/myfollowingpost", requireLogin, (req, res) => {
   POST.find({ postedBy: { $in: req.user.following } })
     .populate("postedBy", "_id name Photo")
-    .populate("comments.postedBy", "_id name Photo")
+    .populate("comments.postedBy", "_id name Photo").sort("-createdAt")
     .then(posts => {
       res.json(posts);
     })
