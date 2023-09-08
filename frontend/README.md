@@ -36,5 +36,5 @@ Instagram is a feature-rich Instagram clone that replicates the core functionali
 1. Clone the repository:
    ```bash
    git clone "https://github.com/THARMATT/Instagram.git"
-
-
+2. Cyclic 
+       link "https://tan-smiling-wasp.cyclic.cloud"
